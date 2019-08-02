@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="test" />
         <module name="product-server" />
         <module name="eureka-server" />
         <module name="product-client" />
         <module name="common" />
-        <module name="config-server" />
+        <module name="config" />
         <module name="hystrix" />
         <module name="product-common" />
-        <module name="order-common" />
         <module name="stream" />
+        <module name="config-server" />
         <module name="config-client" />
-        <module name="config" />
+        <module name="order-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -34,6 +35,7 @@
       <module name="product-common" target="1.8" />
       <module name="product-server" target="1.8" />
       <module name="stream" target="1.8" />
+      <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -51,6 +53,7 @@
       <module name="product-common" options="-parameters" />
       <module name="product-server" options="-parameters" />
       <module name="stream" options="-parameters" />
+      <module name="test" options="-parameters" />
     </option>
   </component>
 </project>
