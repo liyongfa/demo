@@ -1,0 +1,13 @@
+com\gudt\product\req\product\ProductInsertFormReq.class
+com\gudt\product\common\StringUtils.class
+com\gudt\product\resp\BaseResp.class
+com\gudt\product\vo\product\ProductVo.class
+com\gudt\product\resp\product\ProductSelectResp.class
+com\gudt\product\resp\product\ProductInsertResp.class
+com\gudt\product\req\BaseReq.class
+com\gudt\product\req\product\ProductSelectReq.class
+com\gudt\product\req\product\ProductUpdateFormReq.class
+com\gudt\product\common\OperationType.class
+com\gudt\product\common\ResultCode.class
+com\gudt\product\resp\product\ProductUpdateResp.class
+com\gudt\product\vo\BaseVo.class

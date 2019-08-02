@@ -1,0 +1,37 @@
+server:
+  servlet:
+    context-path: /product
+  port: 8888
+spring:
+  application:
+    name: product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: yaya
+    hikari:
+      idle-timeout: 20000
+      minimum-idle: 5
+      auto-commit: true
+      maximum-pool-size: 50
+      pool-name: HIKARI-DATASOURCE
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.118:8761/eureka-server/eureka/
+    enabled: true #默认是true,表示启用eureka的client端
+    healthcheck:
+      enabled: true #启动健康检查,建议开启健康检查,因为心跳机制只能保证服务不挂,但是不能保证服务可不可用
+    registry-fetch-interval-seconds: 30 #默认是每30s就拉取一次配置注册表信息
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 10 #告诉eureka服务器,如果该服务间隔了10s都还没有发送请求,那么就意味着该服务挂了
+    lease-renewal-interval-in-seconds: 5 #告诉eureka服务器端,该服务每间隔5s就向eureka服务器端发送一次心跳
+    prefer-ip-address: true #优先使用ip地址进行发现,具体作用忘记了

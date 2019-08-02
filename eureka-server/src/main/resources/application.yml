@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /eureka-server
+  port: 8761
+spring:
+  application:
+    name: eureka-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.118:${server.port}${server.servlet.context-path}/eureka/
+    #关闭eureka的客户端行为
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    #Eureka的自我保护机制其实是为了在网络状况不稳定的情况下仍然能在一段时间内保存服务的地址信息
+    #防止微服务因网络原因频繁被剔除和注册，出现短时间内频繁修改注册信息的问题，也防止Eureka对服务状态的误判
+    #关闭自我保护模式(自我保护模式在网络环境不稳定的时候起作用)
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000 #每间隔5s剔除一次下线的服务,默认时间是60s
+  instance:
+    instance-id: ${spring.application.name}:${server.port}

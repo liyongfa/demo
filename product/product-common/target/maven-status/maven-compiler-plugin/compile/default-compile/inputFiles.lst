@@ -1,0 +1,13 @@
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\vo\product\ProductVo.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\vo\BaseVo.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\common\StringUtils.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\req\BaseReq.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\req\product\ProductUpdateFormReq.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\resp\BaseResp.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\common\OperationType.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\resp\product\ProductUpdateResp.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\req\product\ProductInsertFormReq.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\resp\product\ProductInsertResp.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\req\product\ProductSelectReq.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\common\ResultCode.java
+G:\spring\demo\product\product-common\src\main\java\com\gudt\product\resp\product\ProductSelectResp.java

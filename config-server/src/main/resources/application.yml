@@ -1,0 +1,84 @@
+#在使用统一配置中心进行配置文件的统一配置的时候,需要使用bootstrap.yml来加载启动的驱动程序
+#When this HTTP server runs, it picks up the external configuration from the default local config server
+#(if it is running) on port 8888. To modify the startup behavior,
+#you can change the location of the config server by using bootstrap.properties
+#(similar to application.properties but for the bootstrap phase of an application context),
+#as shown in the following example:
+server:
+  port: 7777
+spring:
+  application:
+    name: CONFIG
+  cloud:
+    config:
+      server:
+        git:
+          #这种方法可以用来配置本地的仓储中心
+          #uri: file://${user.home}/config-repo
+          uri: https://github.com/liyongfa
+          search-paths: config-repo   #有可能,我们需要的配置文件还在uri的下面,所以通过配置search-paths来进行向下进一步搜索
+          force-pull: true #当本地的配置文件资源被污染的时候
+          username: liyongfa
+          password: yaya19970123
+          default-label: master
+          refresh-rate: 10
+          #By default the value is 0, meaning the config server will fetch updated configuration
+          #from the Git repo every time it is requested.
+          basedir: ${user.home}/configRepository
+          #user.home对应的目录是C:\Users\Administrator
+          #user.dir对应的目录就是当前项目保存的平行目录
+          timeout: 5 #配置服务器获取到HTTP请求的等待时间,不是响应时间(响应是整套流程,获取到链接是在获取到资源前的最长等待时间)
+          skip-ssl-validation: true #可以禁用配置服务器对Git服务器的SSL证书的验证
+          #模式匹配和多个存储库
+          #If {application}/{profile} does not match any of the patterns,
+          #it uses the default URI defined under spring.cloud.config.server.git.uri.
+          #In the above example, for the “simple” repository, the pattern is simple/*
+          #(it only matches one application named simple in all profiles).
+          #The “local” repository matches all application names beginning with local in all profiles
+          #(the /* suffix is added automatically to any pattern that does not have a profile matcher).
+          #如果下面的模式匹配都不存在,那么默认就会使用uri中的仓储
+          repos:
+            simple:
+              pattern:
+                - 'simple'
+              uri: https://github.com/simple/config-repo
+              force-pull: true
+              cloneOnStart: false
+            #the pattern is simple/* (it only matches one application named simple in all profiles).
+            special:
+              #yml中数据的表现形式,不使用逗号
+              pattern:
+                - 'special*/dev*'
+                - '*special*/dev*'
+              uri: https://github.com/special/config-repo
+              force-pull: true #进行配置文件的强制拉取,配置文件将会自动对本地的配置文件进行更新覆盖
+              #如果本地的配置文件被污染了,那么更新就会失败,这是必须通过强制更新来进行配置文件的更新操作
+              cloneOnStart: false #默认是有请求才会去加载配置文件,可以设置为一启动就去加载配置文件
+              #In the preceding example, the server clones special’s config-repo on startup, before it accepts any requests.
+              #All other repositories are not cloned until configuration from the repository is requested.
+
+              #在启动时就设置成加载配置文件,可以判断相应的pattern存不存在,如果不存在的话将会抛出异常
+              #Setting a repository to be cloned when the Config Server starts up can help to identify
+              #a misconfigured configuration source (such as an invalid repository URI) quickly,
+              #while the Config Server is starting up. With cloneOnStart not enabled for a configuration source,
+              #the Config Server may start successfully with a misconfigured or invalid configuration source
+              #and not detect an error until an application requests configuration from that configuration source.
+            local:
+              pattern:
+                - 'local*'
+              uri: file:/home/configsvc/config-repo
+            #The “local” repository matches all application names beginning with local in all profiles
+            #(the /* suffix is added automatically to any pattern that does not have a profile matcher).
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.118:8761/eureka-server/eureka/
+    enabled: true #默认是true,表示启用eureka的client端
+    registry-fetch-interval-seconds: 30 #默认是每30s就拉取一次配置注册表信息
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 10 #告诉eureka服务器,如果该服务间隔了10s都还没有发送请求,那么就意味着该服务挂了
+    lease-renewal-interval-in-seconds: 5 #告诉eureka服务器端,该服务每间隔5s就向eureka服务器端发送一次心跳
+    prefer-ip-address: true #优先使用ip地址进行发现,具体作用忘记了
+

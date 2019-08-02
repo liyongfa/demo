@@ -1,0 +1,61 @@
+#在使用统一配置中心进行配置文件的统一配置的时候,需要使用bootstrap.yml来加载启动的驱动程序
+#When this HTTP server runs, it picks up the external configuration from the default local config server
+#(if it is running) on port 8888. To modify the startup behavior,
+#you can change the location of the config server by using bootstrap.properties
+#(similar to application.properties but for the bootstrap phase of an application context),
+#as shown in the following example:
+server:
+  servlet:
+    context-path: /config-client
+  port: 7878
+
+#日志相关的配置只能放在本地中,不能够放在远程git服务中,因为日志配置文件属性是服务一启动的时候
+#就需要进行加载的
+spring:
+  application:
+    name: config-client
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      #自己需要配置的spring.application.name
+      name: config-client
+      #profile: dev #profile设置的值将会直接映射到spring.profiles.active处,所以也可以直接在那里进行配置
+      #如果需要同时配置多个值的话,那么也可以使用逗号进行隔开
+      label: master
+      #{application}, which maps to spring.application.name on the client side.
+      #{profile}, which maps to spring.profiles.active on the client (comma-separated list).
+      #{label}, which is a server side feature labelling a "versioned" set of config files.
+
+      #The property sources that are added to your application by the bootstrap context
+      #are often “remote” (from example, from Spring Cloud Config Server). By default,
+      #they cannot be overridden locally. If you want to let your applications override
+      #the remote properties with their own System properties or config files,
+      #the remote property source has to grant it permission
+      #by setting spring.cloud.config.allowOverride=true (it does not work to set this locally).
+      #Once that flag is set, two finer-grained settings control the location of the remote
+      #properties in relation to system properties and the application’s local configuration:
+      #覆盖远程属性,默认本地的属性是无法覆盖远程属性的
+      #allow-override: true   要覆盖远程参数的话,那么需要在远程的配置文件处设置
+      #Override from any local property source.
+      #override-none: true     这两个属性配置,不然无法进行属性的覆盖操作
+      #Only system properties, command line arguments, and environment variables
+      #(but not the local config files) should override the remote settings.
+      #overrideSystemProperties: false
+student:
+  name: '李永发'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.118:8761/eureka-server/eureka/
+    enabled: true #默认是true,表示启用eureka的client端
+    registry-fetch-interval-seconds: 30 #默认是每30s就拉取一次配置注册表信息
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 10 #告诉eureka服务器,如果该服务间隔了10s都还没有发送请求,那么就意味着该服务挂了
+    lease-renewal-interval-in-seconds: 5 #告诉eureka服务器端,该服务每间隔5s就向eureka服务器端发送一次心跳
+    prefer-ip-address: true #优先使用ip地址进行发现,具体作用忘记了

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="product-server" />
+        <module name="eureka-server" />
+        <module name="product-client" />
+        <module name="common" />
+        <module name="config-server" />
+        <module name="hystrix" />
+        <module name="product-common" />
+        <module name="order-common" />
+        <module name="stream" />
+        <module name="config-client" />
+        <module name="config" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+      <module name="config" target="1.8" />
+      <module name="config-client" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="demo" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="hystrix" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="order-common" target="1.8" />
+      <module name="product" target="1.8" />
+      <module name="product-client" target="1.8" />
+      <module name="product-common" target="1.8" />
+      <module name="product-server" target="1.8" />
+      <module name="stream" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="config" options="-parameters" />
+      <module name="config-client" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="demo" options="" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="hystrix" options="-parameters" />
+      <module name="order-common" options="-parameters" />
+      <module name="product" options="" />
+      <module name="product-client" options="-parameters" />
+      <module name="product-common" options="-parameters" />
+      <module name="product-server" options="-parameters" />
+      <module name="stream" options="-parameters" />
+    </option>
+  </component>
+</project>
