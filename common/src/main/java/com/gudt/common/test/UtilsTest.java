@@ -8,7 +8,7 @@ package com.gudt.common.test;
 public class UtilsTest {
     //工具类的使用
     public static void main(String[] args) {
-        //StringUtils
+        //string
         //ArrayUtils
         //CollectionUtils
         //FilenameUtils
