@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="gate-way:war">
+    <output-path>$PROJECT_DIR$/gate-way/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>gate-way</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="gate-way-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="gate-way:war exploded" />
+    </root>
+  </artifact>
+</component>

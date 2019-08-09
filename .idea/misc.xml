@@ -4,6 +4,8 @@
     <file type="web" url="file://$PROJECT_DIR$/config" />
     <file type="web" url="file://$PROJECT_DIR$/config-client" />
     <file type="web" url="file://$PROJECT_DIR$/config-server" />
+    <file type="web" url="file://$PROJECT_DIR$/gate-way" />
+    <file type="web" url="file://$PROJECT_DIR$/gateway" />
     <file type="web" url="file://$PROJECT_DIR$/hystrix" />
     <file type="web" url="file://$PROJECT_DIR$/product/product-server" />
     <file type="web" url="file://$PROJECT_DIR$/stream" />
@@ -21,6 +23,7 @@
         <option value="$PROJECT_DIR$/stream/pom.xml" />
         <option value="$PROJECT_DIR$/hystrix/pom.xml" />
         <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/gate-way/pom.xml" />
       </list>
     </option>
   </component>

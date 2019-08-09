@@ -1,5 +1,6 @@
 package com.gdut.hystrix.controller;
 
+import com.gdut.hystrix.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Autowired
-    private HelloServiceImpl helloService;
+    private HelloService helloService;
 
     @RequestMapping("/hello")
-    public String hello(String name){
+    public String hello(String name) {
         return helloService.hello(name);
     }
 }
