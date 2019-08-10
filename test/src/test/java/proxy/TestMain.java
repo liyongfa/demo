@@ -25,5 +25,9 @@ public class TestMain {
         HelloService.Introduce introduce2 = () ->
                 System.out.println("这是使用lambda表达式来实现接口");
         introduce2.say();
+
+
     }
 }
+
+
