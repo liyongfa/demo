@@ -9,7 +9,7 @@ public class TestMain {
         helloService = HelloServiceProxy.getProxyInstance(helloService);
         //调用方法，触发代理操作
         helloService.sayHello();
-        System.out.println("---------------下面演示一下接口相关知识-------------");
+        System.out.println("---------------下面演示一下接口相关知  识-------------");
         //可以直接访问接口里面的常量信息
         System.out.println(HelloService.MESSAGE);
         //实现HelloService里面的内部接口Introduce
@@ -25,8 +25,6 @@ public class TestMain {
         HelloService.Introduce introduce2 = () ->
                 System.out.println("这是使用lambda表达式来实现接口");
         introduce2.say();
-
-
     }
 }
 

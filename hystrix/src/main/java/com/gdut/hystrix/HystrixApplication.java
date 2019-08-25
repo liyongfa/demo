@@ -6,8 +6,8 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableDiscoveryClient
-@EnableCircuitBreaker//启用断路器
+//@EnableDiscoveryClient
+//@EnableCircuitBreaker//启用断路器
 public class HystrixApplication {
 
     public static void main(String[] args) {

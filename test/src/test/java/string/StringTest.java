@@ -5,8 +5,9 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * @Auther: lyf
@@ -35,6 +36,14 @@ public class StringTest {
         //获取缩写
         System.out.println("要求字符串的长度必须大于等于4:" + StringUtils.abbreviate("gaijgoajgoa", 6));
         System.out.println("第二个参数是后面省略的标志字符串:" + StringUtils.abbreviate("gjajghpoa", "---", 8));
+    }
+
+    //参数是一个数组收集器
+    public void print(String... arr) {
+        Set<String> set = new HashSet<>();
+        //断言，要求参数必须不能为null，否则就会抛出异常
+        Objects.requireNonNull(arr);
+        System.out.println(arr.length);
     }
 
 }
